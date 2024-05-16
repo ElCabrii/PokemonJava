@@ -1,4 +1,4 @@
-import java.util.*;
+package src;
 import Story.Chap1.*;
 
 
@@ -7,4 +7,3 @@ public class Main {
         start.start(args);
     }
 }
-
