@@ -1,4 +1,4 @@
 package src;
 
-public class pokemon {
+public class Pokemon {
 }

@@ -1,10 +1,10 @@
 package src;
 
-public class player {
+public class Player {
     private String name;
-    private pokemon[] team;
-    private item[] bag;
-    public player(String name, pokemon[] team, item[] bag) {
+    private Pokemon[] team;
+    private Item[] bag;
+    public Player(String name, Pokemon[] team, Item[] bag) {
         this.name = name;
         this.team = team;
         this.bag = bag;
