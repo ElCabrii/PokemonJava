@@ -1,4 +1,4 @@
-package classes;
+package src;
 
 public class pokemon {
 }
