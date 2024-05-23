@@ -4,6 +4,6 @@ import src.Chapters.*;
 
 public class Main {
     public static void main(String[] args) {
-        Intro.start(args);
+        Intro.introduction(args);
     }
 }
