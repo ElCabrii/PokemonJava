@@ -1,9 +1,10 @@
 package src.Pokemon;
 
 public class Ability {
-    private String name;
-    private Type type;
-    private int power;
-    private int pp;
+
+
+    public static Ability OVERGROW ;
+    public static Ability BLAZE ;
+    public static Ability TORRENT;
 }
 
