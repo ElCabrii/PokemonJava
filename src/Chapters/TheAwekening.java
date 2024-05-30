@@ -14,7 +14,7 @@ import src.TextDisplayer;
                     "But you drink a little bit too much \n" +
                     "You look around you and you see a Pokemon \n" +
                     "A familiar voice is talking your name \n" +
-                    Player.getName() + " ! " +
+                    //Player.getName() + " ! " +
                     "Professor Java: I'm glad you wake up ! \n" +
                     "You tried to beat your dad in pokeshot battle last night \n" +
                     "But you lose and you fall asleep \n" +
