@@ -1,22 +1,24 @@
 package src.Pokemon;
 
-public enum Type {
-    NORMAL,
-    FIRE,
-    WATER,
-    ELECTRIC,
-    GRASS,
-    ICE,
-    FIGHTING,
-    POISON,
-    GROUND,
-    FLYING,
-    PSYCHIC,
-    BUG,
-    ROCK,
-    GHOST,
-    DRAGON,
-    DARK,
-    STEEL,
-    FAIRY
+public class Type {
+    public enum ElementType {
+        NORMAL,
+        FIRE,
+        WATER,
+        ELECTRIC,
+        GRASS,
+        ICE,
+        FIGHTING,
+        POISON,
+        GROUND,
+        FLYING,
+        PSYCHIC,
+        BUG,
+        ROCK,
+        GHOST,
+        DRAGON,
+        DARK,
+        STEEL,
+        FAIRY
+    }
 }
