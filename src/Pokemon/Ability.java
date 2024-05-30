@@ -13,5 +13,10 @@ public class Ability {
     public Type.ElementType getType() {
         return type;
     }
+
+
+    public static Ability OVERGROW ;
+    public static Ability BLAZE ;
+    public static Ability TORRENT;
 }
 

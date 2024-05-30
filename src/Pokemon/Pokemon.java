@@ -8,6 +8,8 @@ public class Pokemon {
         private Ability[] abilities;
         private int maxHP;
         private int currentHP;
+
+
         public Pokemon(String name, Type.ElementType[] types, Ability[] abilities, int maxHP) {
             this.name = name;
             this.types = types;

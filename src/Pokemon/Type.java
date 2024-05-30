@@ -1,7 +1,6 @@
 package src.Pokemon;
 
-public class Type {
-    public enum ElementType {
+public enum Type {
         NORMAL,
         FIRE,
         WATER,
@@ -21,4 +20,4 @@ public class Type {
         STEEL,
         FAIRY
     }
-}
+
