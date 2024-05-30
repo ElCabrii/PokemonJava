@@ -14,7 +14,7 @@ public class Intro {
                         "Let's go !";
 
 
-        TextDisplayer.displayTextCharacterByCharacter(textToDisplay);
+        TextDisplayer.displayParagraph(textToDisplay);
 
        TheAwakening.wakeUp(args);
 
