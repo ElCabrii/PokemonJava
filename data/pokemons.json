@@ -1,0 +1,232 @@
+{
+  "pokemons": [
+    {
+      "id": 1,
+      "name": "Bulbasaur",
+      "abilities": ["Overgrow", "Chlorophyll"],
+      "stats": {
+        "hp": 45,
+        "attack": 49
+      },
+      "types": ["Grass", "Poison"]
+    },
+    {
+      "id": 2,
+      "name": "Ivysaur",
+      "abilities": ["Overgrow", "Chlorophyll"],
+      "stats": {
+        "hp": 60,
+        "attack": 62
+      },
+      "types": ["Grass", "Poison"]
+    },
+    {
+      "id": 3,
+      "name": "Venusaur",
+      "abilities": ["Overgrow", "Chlorophyll"],
+      "stats": {
+        "hp": 80,
+        "attack": 82
+      },
+      "types": ["Grass", "Poison"]
+    },
+    {
+      "id": 4,
+      "name": "Charmander",
+      "abilities": ["Blaze", "Solar Power"],
+      "stats": {
+        "hp": 39,
+        "attack": 52
+      },
+      "types": ["Fire"]
+    },
+    {
+      "id": 5,
+      "name": "Charmeleon",
+      "abilities": ["Blaze", "Solar Power"],
+      "stats": {
+        "hp": 58,
+        "attack": 64
+      },
+      "types": ["Fire"]
+    },
+    {
+      "id": 6,
+      "name": "Charizard",
+      "abilities": ["Blaze", "Solar Power"],
+      "stats": {
+        "hp": 78,
+        "attack": 84
+      },
+      "types": ["Fire", "Flying"]
+    },
+    {
+      "id": 7,
+      "name": "Squirtle",
+      "abilities": ["Torrent", "Rain Dish"],
+      "stats": {
+        "hp": 44,
+        "attack": 48
+      },
+      "types": ["Water"]
+    },
+    {
+      "id": 8,
+      "name": "Wartortle",
+      "abilities": ["Torrent", "Rain Dish"],
+      "stats": {
+        "hp": 59,
+        "attack": 63
+      },
+      "types": ["Water"]
+    },
+    {
+      "id": 9,
+      "name": "Blastoise",
+      "abilities": ["Torrent", "Rain Dish"],
+      "stats": {
+        "hp": 79,
+        "attack": 83
+      },
+      "types": ["Water"]
+    },
+    {
+      "id": 10,
+      "name": "Caterpie",
+      "abilities": ["Shield Dust", "Run Away"],
+      "stats": {
+        "hp": 45,
+        "attack": 30
+      },
+      "types": ["Bug"]
+    },
+    {
+      "id": 11,
+      "name": "Metapod",
+      "abilities": ["Shed Skin"],
+      "stats": {
+        "hp": 50,
+        "attack": 20
+      },
+      "types": ["Bug"]
+    },
+    {
+      "id": 12,
+      "name": "Butterfree",
+      "abilities": ["Compound Eyes", "Tinted Lens"],
+      "stats": {
+        "hp": 60,
+        "attack": 45
+      },
+      "types": ["Bug", "Flying"]
+    },
+    {
+      "id": 13,
+      "name": "Weedle",
+      "abilities": ["Shield Dust"],
+      "stats": {
+        "hp": 40,
+        "attack": 35
+      },
+      "types": ["Bug", "Poison"]
+    },
+    {
+      "id": 14,
+      "name": "Kakuna",
+      "abilities": ["Shed Skin"],
+      "stats": {
+        "hp": 45,
+        "attack": 25
+      },
+      "types": ["Bug", "Poison"]
+    },
+    {
+      "id": 15,
+      "name": "Beedrill",
+      "abilities": ["Swarm", "Sniper"],
+      "stats": {
+        "hp": 65,
+        "attack": 90
+      },
+      "types": ["Bug", "Poison"]
+    },
+    {
+      "id": 16,
+      "name": "pidgey",
+      "abilities": [
+        "keen-eye",
+        "tangled-feet"
+      ],
+      "stats": {
+        "hp": 40,
+        "attack": 45
+      },
+      "types": [
+        "normal",
+        "flying"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "pidgeotto",
+      "abilities": [
+        "keen-eye",
+        "tangled-feet"
+      ],
+      "stats": {
+        "hp": 63,
+        "attack": 60
+      },
+      "types": [
+        "normal",
+        "flying"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "pidgeot",
+      "abilities": [
+        "keen-eye",
+        "tangled-feet"
+      ],
+      "stats": {
+        "hp": 83,
+        "attack": 80
+      },
+      "types": [
+        "normal",
+        "flying"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "rattata",
+      "abilities": [
+        "run-away",
+        "guts"
+      ],
+      "stats": {
+        "hp": 30,
+        "attack": 56
+      },
+      "types": [
+        "normal"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "raticate",
+      "abilities": [
+        "run-away",
+        "guts"
+      ],
+      "stats": {
+        "hp": 55,
+        "attack": 81
+      },
+      "types": [
+        "normal"
+      ]
+    }
+  ]
+}
