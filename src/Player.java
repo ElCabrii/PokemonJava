@@ -6,8 +6,8 @@ import src.Pokemon.Type;
 import src.Pokemon.Ability;
 
 public class Player {
-    private static String name;
-    private static Pokemon[] team;
+    protected static String name;
+    protected static Pokemon[] team;
     private Item[] bag;
     public Player(String name, Pokemon[] team, Item[] bag) {
         Player.name = name;
@@ -35,17 +35,16 @@ public class Player {
     public static  void getStarterPokemon() {
         // Create Bulbasaur
 
-        Pokemon bulbasaur = new Pokemon();
+        Pokemon bulbasaur = new Pokemon("Bulbasaur", new Type.ElementType[]{Type.ElementType.GRASS, Type.ElementType.POISON}, new Ability[]{Ability.OVERGROW}, 45);
 
         // Create Charmander
 
-        Pokemon charmander = new Pokemon();
+        Pokemon charmander = new Pokemon( "Charmander", new Type.ElementType[]{Type.ElementType.FIRE}, new Ability[]{Ability.BLAZE}, 39);
         // Create Squirtle
 
-        Pokemon squirtle = new Pokemon();
+        Pokemon squirtle = new Pokemon( "Squirtle", new Type.ElementType[]{Type.ElementType.WATER}, new Ability[]{Ability.TORRENT}, 44);
         // Add the chosen Pokemon to the player's team
         //team[0] = bulbasaur;
-
         //team[1] = charmander;
         //team[2] = squirtle;
         Scanner scanner = new Scanner(System.in);
@@ -53,15 +52,14 @@ public class Player {
         // Prompt the user for their name
         System.out.print("Choose your first Pokemon: ");
         String chosenPokemon = scanner.nextLine();
-        if (chosenPokemon.equals("Bulbasaur")) {
-            team[0] = bulbasaur;
-        } else if (chosenPokemon.equals("Charmander")) {
-            team[0] = charmander;
-        } else if (chosenPokemon.equals("Squirtle")) {
-            team[0] = squirtle;
-        } else {
-            System.out.println("Invalid choice. Please choose one of the following: Bulbasaur, Charmander, Squirtle");
-            getStarterPokemon();
+        switch (chosenPokemon) {
+            case "Bulbasaur" -> team[0] = bulbasaur;
+            case "Charmander" -> team[0] = charmander;
+            case "Squirtle" -> team[0] = squirtle;
+            default -> {
+                System.out.println("Invalid choice. Please choose one of the following: Bulbasaur, Charmander, Squirtle");
+                getStarterPokemon();
+            }
         }
 
         System.out.println("You have chosen " + team[0] + " as your first Pokemon!");
