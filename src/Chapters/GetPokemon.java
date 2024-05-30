@@ -1,6 +1,5 @@
 package src.Chapters;
-import src.ClearTerminal;
-import src.TextDisplayer;
+
 public class GetPokemon {
     public static void getPokemon(String[] args) {
         String textToDisplay =

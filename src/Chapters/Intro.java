@@ -1,6 +1,5 @@
 package src.Chapters;
 
-import src.ClearTerminal;
 import src.TextDisplayer;
 
 public class Intro {
@@ -17,6 +16,8 @@ public class Intro {
 
         TextDisplayer.displayTextCharacterByCharacter(textToDisplay);
 
-        ClearTerminal.clearTerminal();
+       TheAwekening.wakeUp(args);
+
+
     }
 }
