@@ -16,7 +16,7 @@ public class Intro {
 
         TextDisplayer.displayTextCharacterByCharacter(textToDisplay);
 
-       TheAwekening.wakeUp(args);
+       TheAwakening.wakeUp(args);
 
 
     }
