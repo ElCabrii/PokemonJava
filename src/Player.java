@@ -1,6 +1,8 @@
 package src;
 import java.util.Scanner;
 
+import src.Pokemon.Pokemon;
+
 public class Player {
     private static String name;
     private Pokemon[] team;
