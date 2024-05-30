@@ -1,5 +1,7 @@
 package src;
 
+import src.Pokemon.Pokemon;
+
 public class Player {
     private String name;
     private Pokemon[] team;
