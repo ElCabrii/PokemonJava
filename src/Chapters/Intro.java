@@ -1,9 +1,10 @@
 package src.Chapters;
 
 import src.TextDisplayer;
+import src.Trainer;
 
 public class Intro {
-    public static void introduction(String[] args) {
+    public static Trainer start() {
         String textToDisplay =
                 "Welcome in a new world !!!\n" +
                         "A world full of mysterious creature called : Pokemon !\n" +
@@ -11,13 +12,10 @@ public class Intro {
                         "In this world, you will meet a lot of people, some of them will be your friends, some of them will be your ennemies.\n" +
                         "Your goal is to become the best Pokemon Trainer in the world. \n" +
                         "But before that, you need to choose your first Pokemon \n" +
-                        "Let's go !";
-
-
+                        "Let's go !\n" +
+                        "Press Enter to continue...";
         TextDisplayer.displayParagraph(textToDisplay);
 
-       TheAwakening.wakeUp(args);
-
-
+       return TheAwakening.wakeUp();
     }
 }
