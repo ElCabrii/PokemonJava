@@ -13,7 +13,7 @@ public class Pokemon {
     private int level;
     private Status status;
     private LivingStatus livingStatus;
-    public Pokemon(String name, EnumTypes[] types, List<Ability> abilities, int maxHP, int attack) {
+    public Pokemon(String name, EnumTypes[] types, List<Ability> abilities, int maxHP, int attack, Status status) {
         this.name = name;
         this.types = types;
         this.abilities = abilities;
@@ -21,7 +21,7 @@ public class Pokemon {
         this.currentHP = maxHP;
         this.level = 1;
         this.attack = attack;
-        this.status = Status.WILD;
+        this.status = status;
         this.livingStatus = LivingStatus.ALIVE;
     }
 
@@ -85,7 +85,7 @@ public class Pokemon {
         System.out.println(name + " leveled up to level " + level + "!");
     }
 
-    public int attack(Pokemon target) {
+    public void attack(Pokemon target) {
         switch (status) {
             case CAUGHT -> {
                 System.out.println("What ability would you like to use?");
@@ -95,11 +95,19 @@ public class Pokemon {
                 Scanner choice = new Scanner(System.in);
                 Ability ability = abilities.get(choice.nextInt() - 1);
                 System.out.println(name + " used " + ability.getName() + " on " + target.getName() + "!");
+                int dmg = attack/5;
+                target.setCurrentHP(target.getCurrentHP() - dmg);
+                System.out.println(target.getName() + " took " + dmg + " damage!");
+                System.out.println(target.getName() + " has " + target.getCurrentHP() + " HP left!");
+                System.out.println(target.getName() + " used " + target.abilities.get(0).getName() + " on " + name + "!");
+                dmg = target.getAttack()/5;
+                currentHP -= dmg;
+                System.out.println(name + " took " + dmg + " damage!");
+                System.out.println(name + " has " + currentHP + " HP left!");
             }
             case WILD, TAMED ->
                     System.out.println(name + " used " + abilities.getFirst().getName() + " on " + target.getName() + "!");
         }
-        return attack / 5;
     }
     public void faint() {
         livingStatus = LivingStatus.FAINTED;
