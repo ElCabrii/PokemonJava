@@ -7,6 +7,7 @@ import org.json.simple.parser.ParseException;
 import src.Chapters.Intro;
 import src.Pokemon.Ability;
 import src.Pokemon.Pokemon;
+import src.Pokemon.Status;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -34,13 +35,14 @@ public class Game {
             });
             final int hp = Integer.parseInt((String) json.get("hp"));
             final int attack = Integer.parseInt((String) json.get("attack"));
-            final Pokemon pokemon = new Pokemon((String) json.get("name"), null, abilitiesList, hp, attack);
+            final Pokemon pokemon = new Pokemon((String) json.get("name"), null, abilitiesList, hp, attack, null);
             pokemons.add(pokemon);
         });
     }
-    public static Pokemon getPokemon(String name) {
+    public static Pokemon getPokemon(String name, Status status) {
         for (Pokemon pokemon : pokemons) {
             if (pokemon.getName().equals(name)) {
+                pokemon.setStatus(status);
                 return pokemon;
             }
         }
