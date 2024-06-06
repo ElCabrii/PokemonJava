@@ -11,14 +11,14 @@ public class Trainer {
     private Pokemon[] team;
     private List<Pokemon> caughtPokemon;
     private Item[] bag;
-   // private Places currentLocation;
+    // private Places currentLocation;
 
     public Trainer(String name/*, Places currentLocation*/) {
         this.name = name;
         this.team = new Pokemon[6];
         this.caughtPokemon = List.of();
         this.bag = new Item[20];
-       // this.currentLocation = currentLocation;
+        // this.currentLocation = currentLocation;
     }
 
     public String getName() {
@@ -39,7 +39,7 @@ public class Trainer {
     }
 
     //public Places getCurrentLocation() {
-      //  return currentLocation;
+    //  return currentLocation;
     //}
 
     public Item[] getBag() {
@@ -51,7 +51,7 @@ public class Trainer {
             if (team[i] == null) {
                 team[i] = pokemon;
                 System.out.println(name);
-                System.out.println(pokemon.getName() + " has been added to " +  name + "'s team!");
+                System.out.println(pokemon.getName() + " has been added to " + name + "'s team!");
                 return;
             }
         }
@@ -188,7 +188,7 @@ public class Trainer {
                     if (oCurrentPokemon == opponent.getTeam()[j]) {
                         opponent.getTeam()[j].faint();
                         for (Pokemon pokemon : opponent.getTeam()) {
-                            if (pokemon != null){
+                            if (pokemon != null) {
                                 if (pokemon.getLivingStatus() == LivingStatus.ALIVE) {
                                     oCurrentPokemon = pokemon;
                                     break;
@@ -213,3 +213,16 @@ public class Trainer {
         System.out.println("You lose!");
     }
 }
+   /* public void path(){
+        System.out.println(
+                "In front of you, two path : \n"+
+                "1. TAR \n" +
+                "2. FERN\n" +
+                "You have to choose which path you want to use :\n");
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1 ->
+        }
+    }
+}*/
