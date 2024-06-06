@@ -11,14 +11,14 @@ public class Trainer {
     private Pokemon[] team;
     private List<Pokemon> caughtPokemon;
     private Item[] bag;
-    private Places currentLocation;
+   // private Places currentLocation;
 
-    public Trainer(String name, Places currentLocation) {
+    public Trainer(String name/*, Places currentLocation*/) {
         this.name = name;
         this.team = new Pokemon[6];
         this.caughtPokemon = List.of();
         this.bag = new Item[20];
-        this.currentLocation = currentLocation;
+       // this.currentLocation = currentLocation;
     }
 
     public String getName() {
@@ -31,16 +31,16 @@ public class Trainer {
         String playerName = scanner.nextLine();
         City location = new City("Pallet Town");
         Places currentLocation = location.getPlaces()[3];
-        return new Trainer(playerName, currentLocation);
+        return new Trainer(playerName/*, currentLocation*/);
     }
 
     public Pokemon[] getTeam() {
         return team;
     }
 
-    public Places getCurrentLocation() {
-        return currentLocation;
-    }
+    //public Places getCurrentLocation() {
+      //  return currentLocation;
+    //}
 
     public Item[] getBag() {
         return bag;

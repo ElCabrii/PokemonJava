@@ -21,6 +21,6 @@ public class TheChoice {
         String name = scanner.nextLine();
         trainer.getTeam()[0].setName(name);
         TextDisplayer.displayParagraph(textToDisplay[1]);
-        return trainer;
+        return Home.home(trainer);
     }
 }
