@@ -1,4 +1,4 @@
-package src.Pokemon;
+package com.pokemongame.Pokemon;
 
 import java.util.List;
 import java.util.Scanner;

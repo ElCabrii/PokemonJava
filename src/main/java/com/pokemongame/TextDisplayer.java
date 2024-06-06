@@ -1,4 +1,4 @@
-package src;
+package com.pokemongame;
 
 import java.io.IOException;
 
@@ -65,4 +65,26 @@ public class TextDisplayer {
         waitForEnterKey();
         clearConsole();
     }
+    /*String text;
+    int i =0;
+
+    Timer timer = new Timer(80, new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e){
+
+            char character[] = text.toCharArray();
+            int arrayNumber = character.length;
+
+            String s = String.valueOf(character[i]);
+
+            textArea.append(s);
+
+            i++;
+
+            if(i == arrayNumber){
+                i = 0;
+                timer.stop();
+            }
+        }
+    });*/
 }

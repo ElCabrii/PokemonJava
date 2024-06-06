@@ -1,4 +1,4 @@
-package src.Pokemon;
+package com.pokemongame.Pokemon;
 
 public class Ability {
     private String name;

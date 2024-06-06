@@ -1,7 +1,7 @@
-package src.Chapters;
+package com.pokemongame.Chapters;
 
-import src.TextDisplayer;
-import src.Trainer;
+import com.pokemongame.TextDisplayer;
+import com.pokemongame.Trainer;
 
 public class Intro {
     public static Trainer start() {

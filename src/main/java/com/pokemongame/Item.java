@@ -1,4 +1,4 @@
-package src;
+package com.pokemongame;
 
 public class Item {
     private String name;

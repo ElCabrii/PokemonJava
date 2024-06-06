@@ -1,7 +1,6 @@
-package src.Chapters;
-import src.Move;
-import src.TextDisplayer;
-import src.Trainer;
+package com.pokemongame.Chapters;
+import com.pokemongame.TextDisplayer;
+import com.pokemongame.Trainer;
 
 import java.util.Scanner;
 

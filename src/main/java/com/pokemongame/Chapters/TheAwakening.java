@@ -1,7 +1,7 @@
-package src.Chapters;
+package com.pokemongame.Chapters;
 
-import src.Trainer;
-import src.TextDisplayer;
+import com.pokemongame.Trainer;
+import com.pokemongame.TextDisplayer;
 
 public class TheAwakening {
     public static Trainer wakeUp() {

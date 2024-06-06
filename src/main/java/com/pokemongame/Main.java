@@ -1,8 +1,6 @@
-package src;
+package com.pokemongame;
 
 import org.json.simple.parser.ParseException;
-import src.Chapters.*;
-import src.Pokemon.Status;
 
 import java.io.IOException;
 

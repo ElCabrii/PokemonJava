@@ -1,13 +1,13 @@
-package src;
+package com.pokemongame;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import src.Chapters.Intro;
-import src.Pokemon.Ability;
-import src.Pokemon.Pokemon;
-import src.Pokemon.Status;
+import com.pokemongame.Chapters.Intro;
+import com.pokemongame.Pokemon.Ability;
+import com.pokemongame.Pokemon.Pokemon;
+import com.pokemongame.Pokemon.Status;
 
 import java.io.FileReader;
 import java.io.IOException;

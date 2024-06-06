@@ -1,22 +1,26 @@
-package src;
+package com.pokemongame;
 import java.util.List;
 import java.util.Scanner;
 
-import src.Pokemon.Pokemon;
-import src.Pokemon.Status;
-import src.Pokemon.LivingStatus;
+import com.pokemongame.Pokemon.Pokemon;
+import com.pokemongame.Pokemon.Status;
+import com.pokemongame.Pokemon.LivingStatus;
 
 public class Trainer {
-    private String name;
+    private final String name;
     private Pokemon[] team;
     private List<Pokemon> caughtPokemon;
     private Item[] bag;
-    public Trainer(String name) {
+    private Places currentLocation;
+
+    public Trainer(String name, Places currentLocation) {
         this.name = name;
         this.team = new Pokemon[6];
         this.caughtPokemon = List.of();
         this.bag = new Item[20];
+        this.currentLocation = currentLocation;
     }
+
     public String getName() {
         return name;
     }
@@ -25,11 +29,17 @@ public class Trainer {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter your name to continue: ");
         String playerName = scanner.nextLine();
-        return new Trainer(playerName);
+        City location = new City("Pallet Town");
+        Places currentLocation = location.getPlaces()[3];
+        return new Trainer(playerName, currentLocation);
     }
 
     public Pokemon[] getTeam() {
         return team;
+    }
+
+    public Places getCurrentLocation() {
+        return currentLocation;
     }
 
     public Item[] getBag() {
