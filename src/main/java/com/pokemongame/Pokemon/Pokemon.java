@@ -113,4 +113,18 @@ public class Pokemon {
         livingStatus = LivingStatus.FAINTED;
         System.out.println(name + " has fainted!");
     }
+    public void heal() {
+        currentHP = maxHP;
+        System.out.println(name + " has been healed!");
+    }
+    public void revive() {
+        livingStatus = LivingStatus.ALIVE;
+        currentHP = maxHP/2;
+        System.out.println(name + " has been revived!");
+    }
+    public String randomPokemonName() {
+        String[] names = { "Charmander", "Bulbasaur", "Squirtle", "Ivysaur", "Charmeleon", "Wartortle", "Venusaur", "Charizard", "Blastoise", "Caterpie", "Metapod", "Butterfree", "Weedle", "Kakuna", "Beedrill", "Pidgey", "Pidgeotto", "Pidgeot", "Rattata", "Raticate"};
+        name = names[(int) (Math.random() * names.length)];
+        return name;
+    }
 }
