@@ -212,17 +212,27 @@ public class Trainer {
         }
         System.out.println("You lose!");
     }
-}
-   /* public void path(){
+
+    public void path(Trainer trainer, String nextvillage){
         System.out.println(
                 "In front of you, two path : \n"+
-                "1. TAR \n" +
-                "2. FERN\n" +
-                "You have to choose which path you want to use :\n");
+                        "1. TAR \n" +
+                        "2. FERN\n" +
+                        "You have to choose which path you want to use :\n");
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
         switch (choice) {
-            case 1 ->
+            case 1 -> {
+                System.out.println("You choose the TAR path");
+                RandomChoice.randomTar(nextvillage, trainer);
+            }
+            case 2 -> {
+                Pokemon randomPokemon = Game.getPokemon("randomPokemonName", Status.WILD);
+                System.out.println("You choose the FERN path");
+                RandomChoice.randomFern(nextvillage, randomPokemon);
+            }
         }
     }
-}*/
+}
+
+

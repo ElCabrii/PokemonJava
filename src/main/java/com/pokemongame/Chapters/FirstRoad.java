@@ -7,14 +7,13 @@ import com.pokemongame.Game;
 public class FirstRoad {
     public static Trainer firstRoad(Trainer player){
             String[]textToDisplay=
-                    { "You reach the first road outside the village. \n"
+                    { "You reach the first road outside the village. \n",
 
                     };
 
 
         TextDisplayer.displayParagraph(textToDisplay[0]);
-       //
-        // player.path();
+        player.path(player, "TAR");
 
 
 
