@@ -1,9 +1,12 @@
 package com.pokemongame;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Timer;
 
 public class TextDisplayer {
-    public static final int DELAY_IN_MILLIS = 60;
+    /*public static final int DELAY_IN_MILLIS = 60;
     private static volatile boolean accelerate = false; // Flag to control acceleration
 
     public static void displayTextCharacterByCharacter(String textToDisplay) {
@@ -64,27 +67,18 @@ public class TextDisplayer {
         displayTextCharacterByCharacter(textToDisplay);
         waitForEnterKey();
         clearConsole();
-    }
-    /*String text;
-    int i =0;
-
-    Timer timer = new Timer(80, new ActionListener(){
-        @Override
-        public void actionPerformed(ActionEvent e){
-
-            char character[] = text.toCharArray();
-            int arrayNumber = character.length;
-
-            String s = String.valueOf(character[i]);
-
-            textArea.append(s);
-
-            i++;
-
-            if(i == arrayNumber){
-                i = 0;
-                timer.stop();
+    }*/
+    public static void printWithDelay(String text) {
+        int delay = 50;
+        for (char c : text.toCharArray()) {
+            System.out.print(c);
+            System.out.flush(); // Ensure the character is printed immediately
+            try {
+                Thread.sleep(delay);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.err.println("Thread was interrupted, Failed to complete operation");
             }
         }
-    });*/
+    }
 }
