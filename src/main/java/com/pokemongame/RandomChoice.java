@@ -8,7 +8,7 @@ public class RandomChoice {
             if (!((object instanceof Trainer) || (object instanceof Pokemon))) {
                 throw new IllegalArgumentException("The object must be either a Trainer or a Pokemon");
             }
-            Random random = new Random();
+            /*Random random = new Random();
             // Générer un nombre aléatoire entre 0 et 1
             double randomValue = random.nextDouble();
             // Vérifier si ce nombre est inférieur à 2/3 (0.6667)
@@ -16,6 +16,7 @@ public class RandomChoice {
                 return object;
             } else {
                 return name;
-            }
+            }*/
+            return object;
         }
 }
