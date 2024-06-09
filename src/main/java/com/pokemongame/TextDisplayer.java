@@ -69,7 +69,7 @@ public class TextDisplayer {
         clearConsole();
     }*/
     public static void printWithDelay(String text) {
-        int delay = 50;
+        int delay = 25;
         for (char c : text.toCharArray()) {
             System.out.print(c);
             System.out.flush(); // Ensure the character is printed immediately
