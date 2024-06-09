@@ -96,14 +96,25 @@ public class Pokemon {
                 Ability ability = abilities.get(choice.nextInt() - 1);
                 System.out.println(name + " used " + ability.getName() + " on " + target.getName() + "!");
                 int dmg = attack/5;
-                target.setCurrentHP(target.getCurrentHP() - dmg);
-                System.out.println(target.getName() + " took " + dmg + " damage!");
-                System.out.println(target.getName() + " has " + target.getCurrentHP() + " HP left!");
-                System.out.println(target.getName() + " used " + target.abilities.get(0).getName() + " on " + name + "!");
-                dmg = target.getAttack()/5;
-                currentHP -= dmg;
-                System.out.println(name + " took " + dmg + " damage!");
-                System.out.println(name + " has " + currentHP + " HP left!");
+                if (target.getCurrentHP() > dmg){
+                    target.setCurrentHP(target.getCurrentHP() - dmg);
+                    System.out.println(target.getName() + " took " + dmg + " damage!");
+                    System.out.println(target.getName() + " has " + target.getCurrentHP() + " HP left!");
+                } else {
+                    target.setCurrentHP(0);
+                    target.faint();
+                }
+                if (target.getLivingStatus() == LivingStatus.ALIVE) {
+                    dmg = target.getAttack() / 5;
+                    if (currentHP > dmg) {
+                        currentHP -= dmg;
+                        System.out.println(name + " took " + dmg + " damage!");
+                        System.out.println(name + " has " + currentHP + " HP left!");
+                    } else {
+                        currentHP = 0;
+                        faint();
+                    }
+                }
             }
             case WILD, TAMED ->
                     System.out.println(name + " used " + abilities.getFirst().getName() + " on " + target.getName() + "!");
@@ -113,9 +124,13 @@ public class Pokemon {
         livingStatus = LivingStatus.FAINTED;
         System.out.println(name + " has fainted!");
     }
-    public void heal() {
-        currentHP = maxHP;
-        System.out.println(name + " has been healed!");
+    public void heal(int hp) {
+        if (currentHP + hp > maxHP) {
+            currentHP = maxHP;
+        } else {
+            currentHP += hp;
+        }
+        System.out.println(name + " has been healed for " + hp + " HP!");
     }
     public void revive() {
         livingStatus = LivingStatus.ALIVE;
