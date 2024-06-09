@@ -237,11 +237,11 @@ public class Trainer {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1 -> {
-                System.out.println("You choose the TAR path");
+                TextDisplayer.printWithDelay("You choose the TAR path");
                 RandomChoice.randomPathEvent(city, this);
             }
             case 2 -> {
-                System.out.println("You choose the FERN path");
+                TextDisplayer.printWithDelay("You choose the FERN path");
                 Pokemon randomPokemon = Game.getRandomPokemon(Status.WILD);
                 RandomChoice.randomPathEvent(city, randomPokemon);
             }
