@@ -80,5 +80,6 @@ public class TextDisplayer {
                 System.err.println("Thread was interrupted, Failed to complete operation");
             }
         }
+        System.out.println();
     }
 }

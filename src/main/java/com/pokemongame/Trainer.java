@@ -3,9 +3,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+
 import com.pokemongame.Pokemon.Pokemon;
 import com.pokemongame.Pokemon.Status;
 import com.pokemongame.Pokemon.LivingStatus;
+
+import static com.pokemongame.TextDisplayer.printWithDelay;
 
 public class Trainer {
     private final String name;
@@ -152,40 +155,39 @@ public class Trainer {
     }
 
     public void fight(Trainer opponent) {
-        System.out.println("You are fighting " + opponent.getName() + "!");
+        printWithDelay("You are fighting " + opponent.getName() + "!");
         Pokemon currentPokemon = team[0];
-        System.out.println("Current Pokemon: " + currentPokemon.getName());
+        printWithDelay("Current Pokemon: " + currentPokemon.getName());
         Pokemon oCurrentPokemon = opponent.getTeam()[0];
-        System.out.println("Opponent's current Pokemon: " + oCurrentPokemon.getName());
+        printWithDelay("Opponent's current Pokemon: " + oCurrentPokemon.getName());
         do {
-            System.out.println("Go, go go " + currentPokemon.getName() + "!");
+            printWithDelay("Go, go go " + currentPokemon.getName() + "!");
             while (currentPokemon.getCurrentHP() > 0 && oCurrentPokemon.getCurrentHP() > 0) {
-                System.out.println("What would you like to do?");
-                System.out.println("1. Attack");
-                System.out.println("2. Switch Pokemon");
-                System.out.println("3. Use Item");
+                printWithDelay("What would you like to do?");
+                printWithDelay("1. Attack");
+                printWithDelay("2. Switch Pokemon");
+                printWithDelay("3. Use Item");
                 Scanner scanner = new Scanner(System.in);
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1 -> currentPokemon.attack(oCurrentPokemon);
                     case 2 -> {
                         currentPokemon = choosePokemon();
-                        System.out.println("Go, go go " + currentPokemon.getName() + "!");
+                        printWithDelay("Go, go go " + currentPokemon.getName() + "!");
                     }
                     case 3 -> {
                         if (bag.length == 0) {
-                            System.out.println("You have no items in your bag!");
+                            printWithDelay("You have no items in your bag!");
                         } else {
-                            System.out.println("What item would you like to use?");
+                            printWithDelay("What item would you like to use?");
                             for (int i = 0; i < bag.length; i++) {
                                 if (bag[i] != null) {
-                                    System.out.println(i + 1 + ". " + bag[i].getName());
+                                    printWithDelay((i + 1) + ". " + bag[i].getName());
                                 }
                             }
                             int itemChoice = scanner.nextInt();
                             bag[itemChoice - 1].use();
                         }
-
                     }
                 }
             }
@@ -200,7 +202,7 @@ public class Trainer {
                                     oCurrentPokemon = pokemon;
                                     break;
                                 } else {
-                                    System.out.println("You win!");
+                                    printWithDelay("You win!");
                                     return;
                                 }
                             }
@@ -212,13 +214,14 @@ public class Trainer {
         } while (!isFightOver(opponent));
         for (Pokemon pokemon : team) {
             if (pokemon.getCurrentHP() > 0) {
-                System.out.println("You win!");
+                printWithDelay("You win!");
                 break;
             }
             return;
         }
-        System.out.println("You lose!");
+        printWithDelay("You lose!");
     }
+
 
     public void choosePath() {
         City city = currentLocation.keySet().iterator().next();

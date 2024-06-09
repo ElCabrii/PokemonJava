@@ -6,15 +6,14 @@ import com.pokemongame.TextDisplayer;
 public class TheAwakening {
     public static Trainer wakeUp() {
         Trainer player = Trainer.askName();
-        String textToDisplay =
+        String[] textToDisplay = {
                 "You start to wake up ...\n" +
                         "You try to remember the last night \n" +
                         "The party was amazing for your 18 years old \n" +
                         "But you drank a little bit too much... \n" +
                         "You take a quick look-around and see a Pokemon \n" +
-                        "A familiar voice calls your name : \nProfessor Java: " +
-                        player.getName() + " ! \n" +
-                        "Professor Java: I'm glad you woke up ! \n" +
+                        "A familiar voice calls your name !\n",
+                        "Professor Java: " + player.getName() + " ! \n" + "Professor Java: I'm glad you woke up ! \n" +
                         "You tried to beat your dad in pokeshot battle last night \n" +
                         "But you lost and fell asleep \n" +
                         "He carried you in my laboratory, he wanted you to choose your first Pokemon asap!\n" +
@@ -24,8 +23,11 @@ public class TheAwakening {
                         "1. Bulbasaur\n" +
                         "2. Charmander\n" +
                         "3. Squirtle\n" +
-                        "Which one will you go for ? Choose wisely !\n";
-        TextDisplayer.printWithDelay(textToDisplay);
+                        "Which one will you go for ? Choose wisely !\n"
+        };
+        TextDisplayer.printWithDelay(textToDisplay[0]);
+
+        TextDisplayer.printWithDelay(textToDisplay[1]);
         return TheChoice.theChoice(player);
     }
 }

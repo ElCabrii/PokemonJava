@@ -12,7 +12,7 @@ public class Home {
                     {"You go back to your house. \n" +
                             "Your mom is waiting for you. \n" +
                             "Mom: Hi honey, how was your day ? \n" +
-                            "Trainer.getName: It was great mom, I chose my first Pokemon ! \n" +
+                            name + ": It was great mom, I chose my first Pokemon ! \n" +
                             "Now I am going to begin my travel! \n" +
                             "Say bye to papa for me! \n"+
                             "Mom: I will honey, take care of yourself and your Pokemon! \n" +
@@ -26,16 +26,17 @@ public class Home {
                             name + ": We will see about that! \n" +
                             "Bedrock: Let's battle! \n",
                             name +": You see, i'm already better! \n"+
-                            "Bedrock: Bye, see you when you will \n" +
-                            "You start to walk through the village,"+
+                            "Bedrock: Ok for this time but next time will be deferent !!! \n" +
+                            "Bedrock : CIAO ! \n"+
+                            "You start to walk through the village.\n"+
                             "When you pass, everyone greets you and wishes you good luck on your trip.\n"+
                             "You start to feel a bit strange, adrenalin of becoming an adult and travel alone circulate your veins.\n"+
-                            "it's the beginning of your adventure !!! "
+                            "it's the beginning of your adventure !!!\n "
                     };
 
             TextDisplayer.printWithDelay(textToDisplay[0]);
             Trainer bedrock = new Trainer("Bedrock", Map.of(City.PALLET_TOWN, Place.NURSERY));
-            bedrock.addPokemonToTeam(Game.getPokemon("Squirtle", Status.TAMED));
+            bedrock.addPokemonToTeam(Game.getPokemon("rattata", Status.TAMED));
             player.fight(bedrock);
             TextDisplayer.printWithDelay(textToDisplay[1]);
 
