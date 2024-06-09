@@ -48,6 +48,11 @@ public class Game {
         }
         return null;
     }
+    public static Pokemon getRandomPokemon(Status status) {
+        Pokemon pokemon = pokemons.get((int) (Math.random() * pokemons.size()));
+        pokemon.setStatus(status);
+        return pokemon;
+    }
     public Trainer getPlayer() {
         return trainer;
     }
