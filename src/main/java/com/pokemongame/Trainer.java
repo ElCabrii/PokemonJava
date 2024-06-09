@@ -1,5 +1,6 @@
 package com.pokemongame;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.pokemongame.Pokemon.Pokemon;
@@ -11,14 +12,15 @@ public class Trainer {
     private Pokemon[] team;
     private List<Pokemon> caughtPokemon;
     private Item[] bag;
+    private Map<City, Place> currentLocation;
     // private Places currentLocation;
 
-    public Trainer(String name/*, Places currentLocation*/) {
+    public Trainer(String name, Map<City, Place> currentLocation) {
         this.name = name;
         this.team = new Pokemon[6];
         this.caughtPokemon = List.of();
         this.bag = new Item[20];
-        // this.currentLocation = currentLocation;
+        this.currentLocation = currentLocation;
     }
 
     public String getName() {
@@ -29,18 +31,16 @@ public class Trainer {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter your name to continue: ");
         String playerName = scanner.nextLine();
-        City location = new City("Pallet Town");
-        Places currentLocation = location.getPlaces()[3];
-        return new Trainer(playerName/*, currentLocation*/);
+        return new Trainer(playerName, Map.of(City.PALLET_TOWN, Place.NURSERY));
     }
 
     public Pokemon[] getTeam() {
         return team;
     }
 
-    //public Places getCurrentLocation() {
-    //  return currentLocation;
-    //}
+    public Map<City, Place> getCurrentLocation() {
+        return currentLocation;
+    }
 
     public Item[] getBag() {
         return bag;
@@ -50,7 +50,6 @@ public class Trainer {
         for (int i = 0; i < team.length; i++) {
             if (team[i] == null) {
                 team[i] = pokemon;
-                System.out.println(name);
                 System.out.println(pokemon.getName() + " has been added to " + name + "'s team!");
                 return;
             }
@@ -73,6 +72,7 @@ public class Trainer {
     }
 
     public Pokemon getStarterPokemon() {
+        System.out.println("Make your choice: ");
         Scanner scanner = new Scanner(System.in);
         String chosenPokemon = scanner.nextLine();
         switch (chosenPokemon) {
@@ -89,7 +89,7 @@ public class Trainer {
                 return Game.getPokemon("Squirtle", Status.CAUGHT);
             }
             default -> {
-                System.out.println("Invalid choice. Please choose one of the following: Bulbasaur, Charmander, Squirtle");
+                System.out.println("Invalid choice. Please try again");
                 getStarterPokemon();
             }
         }
@@ -101,9 +101,11 @@ public class Trainer {
     public Pokemon choosePokemon() {
         boolean hasAlivePokemon = false;
         for (Pokemon pokemon : team) {
-            if (pokemon.getLivingStatus() == LivingStatus.ALIVE) {
-                hasAlivePokemon = true;
-                break;
+            if (pokemon != null) {
+                if (pokemon.getLivingStatus() == LivingStatus.ALIVE) {
+                    hasAlivePokemon = true;
+                    break;
+                }
             }
         }
         if (!hasAlivePokemon) {
@@ -128,16 +130,25 @@ public class Trainer {
     }
 
     private boolean isFightOver(Trainer opponent) {
+        boolean alliedAlive = false;
+        boolean opponentAlive = false;
         for (Pokemon pokemon : team) {
-            if (pokemon.getCurrentHP() > 0) {
-                for (Pokemon oPokemon : opponent.getTeam()) {
-                    if (oPokemon.getCurrentHP() > 0) {
-                        return false;
-                    }
+            if (pokemon != null) {
+                if (pokemon.getLivingStatus() == LivingStatus.ALIVE) {
+                    alliedAlive = true;
+                    break;
                 }
             }
         }
-        return true;
+        for (Pokemon pokemon : opponent.getTeam()) {
+            if (pokemon != null) {
+                if (pokemon.getLivingStatus() == LivingStatus.ALIVE) {
+                    opponentAlive = true;
+                    break;
+                }
+            }
+        }
+        return !alliedAlive && !opponentAlive;
     }
 
     public void fight(Trainer opponent) {
@@ -178,15 +189,11 @@ public class Trainer {
                     }
                 }
             }
-            if (currentPokemon.getCurrentHP() <= 0) {
-                currentPokemon.setCurrentHP(0);
-                currentPokemon.faint();
-                System.out.println("Choose your next Pokemon!");
+            if (currentPokemon.getLivingStatus() == LivingStatus.FAINTED) {
                 currentPokemon = choosePokemon();
             } else {
                 for (int j = 0; j < opponent.getTeam().length; j++) {
                     if (oCurrentPokemon == opponent.getTeam()[j]) {
-                        opponent.getTeam()[j].faint();
                         for (Pokemon pokemon : opponent.getTeam()) {
                             if (pokemon != null) {
                                 if (pokemon.getLivingStatus() == LivingStatus.ALIVE) {
@@ -213,29 +220,28 @@ public class Trainer {
         System.out.println("You lose!");
     }
 
-    public void path(Trainer trainer, City name){
+    public void choosePath() {
+        City city = currentLocation.keySet().iterator().next();
+
         System.out.println(
-                "In front of you, two path : \n"+
-                        "1. TAR \n" +
-                        "2. FERN\n" +
-                        "You have to choose which path you want to use :\n");
+                """
+                        There are two path in front of you :\s
+                        1. TAR\s
+                        2. FERN
+                        You have to choose which path you want to use :
+                        """);
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
         switch (choice) {
             case 1 -> {
                 System.out.println("You choose the TAR path");
-                RandomChoice.randomTar(name, trainer);
+                RandomChoice.randomPathEvent(city, this);
             }
             case 2 -> {
-                Pokemon randomPokemon = Game.getPokemon("randomPokemonName", Status.WILD);
                 System.out.println("You choose the FERN path");
-                RandomChoice.randomFern(name, randomPokemon);
+                Pokemon randomPokemon = Game.getRandomPokemon(Status.WILD);
+                RandomChoice.randomPathEvent(city, randomPokemon);
             }
         }
     }
-    public void addPokemonToCaughtPokemon(Pokemon pokemon) {
-        caughtPokemon.add(pokemon);
-    }
 }
-
-
