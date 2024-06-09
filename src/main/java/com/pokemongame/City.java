@@ -1,16 +1,14 @@
 package com.pokemongame;
 
-public class City {
-    private final String name;
-    private final Places[] places;
-    public City(String name) {
-        this.name = name;
-        this.places = new Places[]{Places.ARENA, Places.NURSERY, Places.SHOP, Places.NORTHERN_ROAD, Places.SOUTHERN_ROAD, Places.EASTERN_ROAD, Places.WESTERN_ROAD};
-    }
-    public String getName() {
-        return name;
-    }
-    public Places[] getPlaces() {
-        return places;
-    }
+public enum City {
+    PALLET_TOWN,
+    VIRIDIAN_CITY,
+    PEWTER_CITY,
+    CERULEAN_CITY,
+    VERMILION_CITY,
+    LAVENDER_TOWN,
+    CELADON_CITY,
+    FUCHSIA_CITY,
+    SAFFRON_CITY,
+    CINNABAR_ISLAND,
 }
