@@ -1,6 +1,6 @@
 package com.pokemongame;
 
-public enum Places {
+public enum Place {
     ARENA,
     NURSERY,
     SHOP,
