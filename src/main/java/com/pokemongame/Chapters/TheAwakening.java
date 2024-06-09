@@ -12,7 +12,7 @@ public class TheAwakening {
                         "The party was amazing for your 18 years old \n" +
                         "But you drank a little bit too much... \n" +
                         "You take a quick look-around and see a Pokemon \n" +
-                        "A familiar voice calls your name : \n Professor Java: " +
+                        "A familiar voice calls your name : \nProfessor Java: " +
                         player.getName() + " ! \n" +
                         "Professor Java: I'm glad you woke up ! \n" +
                         "You tried to beat your dad in pokeshot battle last night \n" +
@@ -24,8 +24,8 @@ public class TheAwakening {
                         "1. Bulbasaur\n" +
                         "2. Charmander\n" +
                         "3. Squirtle\n" +
-                        "Which one will you go for ? Choose wisely !";
-        TextDisplayer.displayParagraph(textToDisplay);
+                        "Which one will you go for ? Choose wisely !\n";
+        TextDisplayer.printWithDelay(textToDisplay);
         return TheChoice.theChoice(player);
     }
 }
