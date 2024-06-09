@@ -238,12 +238,17 @@ public class Trainer {
         switch (choice) {
             case 1 -> {
                 TextDisplayer.printWithDelay("You choose the TAR path");
-                RandomChoice.randomPathEvent(city, this);
+                Trainer randomTrainer = new Trainer("Random Trainer", Map.of(City.PALLET_TOWN, Place.NURSERY));
+                randomTrainer.addPokemonToTeam(Game.getRandomPokemon(Status.TAMED));
+                fight(randomTrainer);
             }
             case 2 -> {
                 TextDisplayer.printWithDelay("You choose the FERN path");
                 Pokemon randomPokemon = Game.getRandomPokemon(Status.WILD);
-                RandomChoice.randomPathEvent(city, randomPokemon);
+                encounterPokemon(randomPokemon);
+                Pokemon wildPokemon = Game.getPokemon(randomPokemon.randomPokemonName(), Status.WILD);
+                Pokemon currentPokemon = team[0];
+                currentPokemon.attack(wildPokemon);
             }
         }
     }

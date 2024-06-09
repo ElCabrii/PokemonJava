@@ -117,7 +117,7 @@ public class Pokemon {
                 }
             }
             case WILD, TAMED ->
-                    System.out.println(name + " used " + abilities.getFirst().getName() + " on " + target.getName() + "!");
+                    System.out.println(name + " used " + abilities.get(0).getName() + " on " + target.getName() + "!");
         }
     }
     public void faint() {
@@ -142,4 +142,7 @@ public class Pokemon {
         name = names[(int) (Math.random() * names.length)];
         return name;
     }
+
+
 }
+
