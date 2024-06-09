@@ -1,5 +1,6 @@
 package com.pokemongame.Chapters;
 import com.pokemongame.Chapters.Home;
+import com.pokemongame.City;
 import com.pokemongame.TextDisplayer;
 import com.pokemongame.Trainer;
 import com.pokemongame.Game;
@@ -13,7 +14,7 @@ public class FirstRoad {
 
 
         TextDisplayer.displayParagraph(textToDisplay[0]);
-        player.path(player, "TAR");
+        //player.path(player, City name);
 
 
 

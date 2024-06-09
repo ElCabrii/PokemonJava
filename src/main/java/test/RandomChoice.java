@@ -1,9 +1,9 @@
-package com.pokemongame;
+package test;
 
 import java.util.Random;
 
 public class RandomChoice {
-        public static Object randomTar(City name, Object trainer) {
+        public static Object randomTar(City city, Object trainer) {
             Random random = new Random();
             // Générer un nombre aléatoire entre 0 et 1
             double randomValue = random.nextDouble();
@@ -12,10 +12,10 @@ public class RandomChoice {
             if (randomValue < (2.0 / 3.0)) {
                 return trainer;
             } else {
-                return name;
+                return city;
             }
         }
-        public static Object randomFern(City name, Object randomPokemon){
+        public static Object randomFern(City city, Object randomPokemon){
             Random random = new Random();
             // Générer un nombre aléatoire entre 0 et 1
             double randomValue = random.nextDouble();
@@ -24,7 +24,7 @@ public class RandomChoice {
             if (randomValue < (2.0 / 3.0)) {
                 return randomPokemon;
             } else {
-                return name;
+                return city;
             }
         };
 

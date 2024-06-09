@@ -1,10 +1,11 @@
-package com.pokemongame;
+package test;
+
+import test.Pokemon.LivingStatus;
+import test.Pokemon.Pokemon;
+import test.Pokemon.Status;
+
 import java.util.List;
 import java.util.Scanner;
-
-import com.pokemongame.Pokemon.Pokemon;
-import com.pokemongame.Pokemon.Status;
-import com.pokemongame.Pokemon.LivingStatus;
 
 public class Trainer {
     private final String name;
@@ -213,7 +214,7 @@ public class Trainer {
         System.out.println("You lose!");
     }
 
-    public void path(Trainer trainer, City name){
+    public void path(Trainer trainer, City city){
         System.out.println(
                 "In front of you, two path : \n"+
                         "1. TAR \n" +
@@ -224,12 +225,12 @@ public class Trainer {
         switch (choice) {
             case 1 -> {
                 System.out.println("You choose the TAR path");
-                RandomChoice.randomTar(name, trainer);
+                RandomChoice.randomTar(city, trainer);
             }
             case 2 -> {
                 Pokemon randomPokemon = Game.getPokemon("randomPokemonName", Status.WILD);
                 System.out.println("You choose the FERN path");
-                RandomChoice.randomFern(name, randomPokemon);
+                RandomChoice.randomFern(city, randomPokemon);
             }
         }
     }
