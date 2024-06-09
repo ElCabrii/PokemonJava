@@ -13,8 +13,8 @@ public class FirstRoad {
                     };
 
 
-        TextDisplayer.displayParagraph(textToDisplay[0]);
-        //player.path(player, City name);
+        TextDisplayer.printWithDelay(textToDisplay[0]);
+        player.choosePath();
 
 
 

@@ -1,9 +1,9 @@
 package com.pokemongame.Chapters;
 
-import com.pokemongame.Game;
+import com.pokemongame.*;
 import com.pokemongame.Pokemon.Status;
-import com.pokemongame.TextDisplayer;
-import com.pokemongame.Trainer;
+
+import java.util.Map;
 
 public class Home {
         public static Trainer home(Trainer player) {
@@ -13,7 +13,7 @@ public class Home {
                             "Your mom is waiting for you. \n" +
                             "Mom: Hi honey, how was your day ? \n" +
                             "Trainer.getName: It was great mom, I chose my first Pokemon ! \n" +
-                            "Now I am going to beging my travel! \n" +
+                            "Now I am going to begin my travel! \n" +
                             "Say bye to papa for me! \n"+
                             "Mom: I will honey, take care of yourself and your Pokemon! \n" +
                             name + ": I will mom, I promise! \n" +
@@ -25,19 +25,19 @@ public class Home {
                             "I will beat you and become the champion! \n" +
                             name + ": We will see about that! \n" +
                             "Bedrock: Let's battle! \n",
-                            name +"You see, i'm already better! \n"+
-                            "Bye, see you when you will \n" +
-                            "you start to walk through the village,"+
+                            name +": You see, i'm already better! \n"+
+                            "Bedrock: Bye, see you when you will \n" +
+                            "You start to walk through the village,"+
                             "When you pass, everyone greets you and wishes you good luck on your trip.\n"+
                             "You start to feel a bit strange, adrenalin of becoming an adult and travel alone circulate your veins.\n"+
-                            "it's the beginning of your adrventure !!! "
+                            "it's the beginning of your adventure !!! "
                     };
 
-            TextDisplayer.displayParagraph(textToDisplay[0]);
-            Trainer bedrock = new Trainer("Bedrock");
+            TextDisplayer.printWithDelay(textToDisplay[0]);
+            Trainer bedrock = new Trainer("Bedrock", Map.of(City.PALLET_TOWN, Place.NURSERY));
             bedrock.addPokemonToTeam(Game.getPokemon("Squirtle", Status.TAMED));
             player.fight(bedrock);
-            TextDisplayer.displayParagraph(textToDisplay[1]);
+            TextDisplayer.printWithDelay(textToDisplay[1]);
 
             return FirstRoad.firstRoad(player);
         }
