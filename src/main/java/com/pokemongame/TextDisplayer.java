@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Timer;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class TextDisplayer {
     /*public static final int DELAY_IN_MILLIS = 60;
@@ -82,4 +85,14 @@ public class TextDisplayer {
         }
         System.out.println();
     }
+    public static String readStoryFile(String filePath) {
+        String content = "";
+        try {
+            content = new String(Files.readAllBytes(Paths.get(filePath)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return content;
+    }
+
 }
