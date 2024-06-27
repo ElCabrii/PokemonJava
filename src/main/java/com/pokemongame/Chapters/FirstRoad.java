@@ -10,14 +10,8 @@ public class FirstRoad {
                     { "You reach the first road outside the village. \n",
 
                     };
-
-
         TextDisplayer.printWithDelay(textToDisplay[0]);
         player.choosePath();
-
-
-
-
         return player;
     }
 }

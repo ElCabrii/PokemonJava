@@ -13,6 +13,7 @@ public class Home {
                             TextDisplayer.readStoryFile("data/story1/Home2")
 
                     };
+            textToDisplay[0]=textToDisplay[0].replace("name", name);
             textToDisplay[1]=textToDisplay[1].replace("name", name);
             TextDisplayer.printWithDelay(textToDisplay[0]);
             Trainer bedrock = new Trainer("Bedrock", Map.of(City.PALLET_TOWN, Place.NURSERY));
