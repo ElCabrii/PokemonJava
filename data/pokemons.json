@@ -121,7 +121,7 @@
     },
     {
       "id": 16,
-      "name": "pidgey",
+      "name": "Pidgey",
       "abilities": [
         "keen-eye",
         "tangled-feet"
@@ -135,7 +135,7 @@
     },
     {
       "id": 17,
-      "name": "pidgeotto",
+      "name": "Pidgeotto",
       "abilities": [
         "keen-eye",
         "tangled-feet"
@@ -149,7 +149,7 @@
     },
     {
       "id": 18,
-      "name": "pidgeot",
+      "name": "Pidgeot",
       "abilities": [
         "keen-eye",
         "tangled-feet"
@@ -163,7 +163,7 @@
     },
     {
       "id": 19,
-      "name": "rattata",
+      "name": "Rattata",
       "abilities": [
         "run-away",
         "guts"
@@ -176,7 +176,7 @@
     },
     {
       "id": 20,
-      "name": "raticate",
+      "name": "Raticate",
       "abilities": [
         "run-away",
         "guts"
