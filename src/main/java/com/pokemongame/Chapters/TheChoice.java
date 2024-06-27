@@ -9,11 +9,10 @@ public class TheChoice {
     public static Trainer theChoice(Trainer trainer) {
         trainer.addPokemonToTeam(trainer.getStarterPokemon());
         String[] textToDisplay =
-                {"Professor Java: Well done , you chose your first Pokemon ! \n" +
-                        "Now you need to give him a name ! \n",
-                        "You are now ready to start your adventure ! \n" +
-                        "But before that, you should go to your room and take your stuff. \n" +
-                        "And don't forget to say goodbye to your mom ! \n"} ;
+                {       TextDisplayer.readStoryFile("data/story1/TheChoice1"),
+                        TextDisplayer.readStoryFile("data/story1/TheChoice2")
+
+                } ;
         TextDisplayer.printWithDelay(textToDisplay[0]);
         System.out.print("Enter a name for your Pokemon: ");
         Scanner scanner = new Scanner(System.in);
