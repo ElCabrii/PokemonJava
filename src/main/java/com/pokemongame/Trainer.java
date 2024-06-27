@@ -118,18 +118,46 @@ public class Trainer {
             System.out.println("Choose a Pokemon!");
             for (int i = 0; i < team.length; i++) {
                 if (team[i] != null) {
-                    System.out.println(i + 1 + ". " + team[i].getName());
+                    System.out.println(i + ". " + team[i].getName());
                 }
             }
             Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
-            return team[choice - 1];
+            if (team[choice - 1].getLivingStatus() == LivingStatus.FAINTED) {
+                System.out.println("This Pokemon has fainted! Choose another one.");
+                return choosePokemon();
+            } else {
+                System.out.println("You chose " + team[choice - 1].getName() + "!");
+                return team[choice - 1];
+            }
         }
     }
-
     public void encounterPokemon(Pokemon wildPokemon) {
-        System.out.println("A wild " + wildPokemon.getName() + " appeared!");
-
+        System.out.println("What would you like to do?");
+        System.out.println("1. Fight");
+        System.out.println("2. Catch");
+        System.out.println("3. Run");
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1 -> {
+                Pokemon currentPokemon = choosePokemon();
+                if (currentPokemon != null) {
+                    currentPokemon.attack(wildPokemon);
+                }
+            }
+            case 2 -> {
+                if (wildPokemon.getCurrentHP() < wildPokemon.getMaxHP() / 2) {
+                    System.out.println("You caught " + wildPokemon.getName() + "!");
+                    caughtPokemon.add(wildPokemon);
+                } else {
+                    System.out.println("You throw a pokemon at " + wildPokemon.getName() + "!");
+                    System.out.println(wildPokemon.getName() + " escaped!");
+                    encounterPokemon(wildPokemon);
+                }
+            }
+            case 3 -> System.out.println("You ran away!");
+        }
     }
 
     private boolean isFightOver(Trainer opponent) {
@@ -151,7 +179,7 @@ public class Trainer {
                 }
             }
         }
-        return !alliedAlive && !opponentAlive;
+        return !alliedAlive || !opponentAlive;
     }
 
     public void fight(Trainer opponent) {
@@ -238,7 +266,7 @@ public class Trainer {
         switch (choice) {
             case 1 -> {
                 TextDisplayer.printWithDelay("You choose the TAR path");
-                Trainer randomTrainer = new Trainer("Random Trainer", Map.of(City.PALLET_TOWN, Place.NURSERY));
+                Trainer randomTrainer = new Trainer("NPC", Map.of(City.PALLET_TOWN, Place.NURSERY));
                 randomTrainer.addPokemonToTeam(Game.getRandomPokemon(Status.TAMED));
                 fight(randomTrainer);
             }
