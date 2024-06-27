@@ -1,64 +1,49 @@
 package com.pokemongame;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.Timer;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class TextDisplayer {
-    /*public static final int DELAY_IN_MILLIS = 60;
-    private static volatile boolean accelerate = false; // Flag to control acceleration
 
-    public static void displayTextCharacterByCharacter(String textToDisplay) {
-        accelerate = false; // Reset the acceleration flag
-        Thread displayThread = new Thread(() -> {
-            for (int i = 0; i < textToDisplay.length(); i++) {
-                System.out.print(textToDisplay.charAt(i)); // Display a character
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-                try {
-                    if (!accelerate) {
-                        Thread.sleep(DELAY_IN_MILLIS); // Wait for the specified delay
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        Thread inputThread = new Thread(() -> {
+    public static void printWithDelay(String text) {
+        int delay = 25;
+        for (char c : text.toCharArray()) {
+            System.out.print(c);
+            System.out.flush(); // Ensure the character is printed immediately
             try {
-                while (displayThread.isAlive() && System.in.read() != '\n') {
-                    // Waiting for the Enter key to be pressed
+                if (reader.ready()) { // Check if the Enter key has been pressed
+                    reader.readLine(); // Clear the input buffer
+                    System.out.println(text.substring(text.indexOf(c))); // Print the rest of the text
+                    waitForEnterKey(); // Wait for the Enter key to be pressed again
+                    return;
                 }
-                accelerate = true; // Set the flag to true to accelerate
-            } catch (IOException e) {
-                e.printStackTrace();
+                Thread.sleep(delay);
+            } catch (InterruptedException | IOException e) {
+                Thread.currentThread().interrupt();
+                System.err.println("Thread was interrupted, Failed to complete operation");
             }
-        });
-
-        displayThread.start();
-        inputThread.start();
-
-        try {
-            displayThread.join(); // Wait for the display thread to finish
-            inputThread.join(); // Wait for the input thread to finish
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
+
+        System.out.println();
     }
 
     public static void waitForEnterKey() {
         try {
-            while (System.in.read() != '\n') {
+            while (!reader.ready()) {
                 // Waiting for the Enter key to be pressed
+                Thread.sleep(100); // Sleep to reduce CPU usage
             }
-        } catch (IOException e) {
+            reader.readLine(); // Clear the input buffer
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }
+
 
     public static void clearConsole() {
         // Clear the console using ANSI escape code
@@ -66,25 +51,6 @@ public class TextDisplayer {
         System.out.flush();
     }
 
-    public static void displayParagraph(String textToDisplay) {
-        displayTextCharacterByCharacter(textToDisplay);
-        waitForEnterKey();
-        clearConsole();
-    }*/
-    public static void printWithDelay(String text) {
-        int delay = 25;
-        for (char c : text.toCharArray()) {
-            System.out.print(c);
-            System.out.flush(); // Ensure the character is printed immediately
-            try {
-                Thread.sleep(delay);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                System.err.println("Thread was interrupted, Failed to complete operation");
-            }
-        }
-        System.out.println();
-    }
     public static String readStoryFile(String filePath) {
         String content = "";
         try {
