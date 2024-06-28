@@ -70,10 +70,6 @@ public class Trainer {
         System.out.println(pokemon.getName() + " has been added to your team!");
     }
 
-    public void setBag(Item[] bag) {
-        this.bag = bag;
-    }
-
     public Pokemon getStarterPokemon() {
         System.out.println("Make your choice: ");
         Scanner scanner = new Scanner(System.in);
@@ -148,13 +144,16 @@ public class Trainer {
             }
             case 2 -> {
                 if (wildPokemon.getCurrentHP() < wildPokemon.getMaxHP() / 2) {
+                    System.out.println("You throw a pokeball at " + wildPokemon.getName() + "!");
+
                     System.out.println("You caught " + wildPokemon.getName() + "!");
                     caughtPokemon.add(wildPokemon);
                 } else {
                     System.out.println("You throw a pokemon at " + wildPokemon.getName() + "!");
-                    System.out.println(wildPokemon.getName() + " escaped!");
+                    System.out.println(wildPokemon.getName() + " escaped! You need to weaken it first.");
                     encounterPokemon(wildPokemon);
                 }
+
             }
             case 3 -> System.out.println("You ran away!");
         }
@@ -214,7 +213,7 @@ public class Trainer {
                                 }
                             }
                             int itemChoice = scanner.nextInt();
-                            bag[itemChoice - 1].use();
+                            bag[itemChoice - 1].use(team, bag);
                         }
                     }
                 }
@@ -279,5 +278,21 @@ public class Trainer {
                 currentPokemon.attack(wildPokemon);
             }
         }
+    }
+    public void giveItem (Item item, int amount){
+        for (int i = 0; i < bag.length; i++) {
+            if (bag[i] != null && bag[i].getName().equals(item.getName())) {
+                bag[i].setAmount(bag[i].getAmount() + amount);
+                System.out.println("You received " + amount + item.getName() + "!");
+                return;
+            }
+            else if (bag[i] == null) {
+                item.setAmount(amount);
+                bag[i] = item;
+                System.out.println("You received " + amount + item.getName() + "!");
+                return;
+            }
+        }
+        System.out.println("Your bag is full! You can't receive " + item.getName() + "!");
     }
 }
