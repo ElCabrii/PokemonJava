@@ -279,7 +279,8 @@ public class Trainer {
             }
         }
     }
-    public void giveItem (Item item, int amount){
+    public void giveItem (ItemEnum itemName, int amount){
+        Item item = new Item(itemName);
         for (int i = 0; i < bag.length; i++) {
             if (bag[i] != null && bag[i].getName().equals(item.getName())) {
                 bag[i].setAmount(bag[i].getAmount() + amount);
