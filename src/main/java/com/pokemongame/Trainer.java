@@ -1,10 +1,11 @@
 package com.pokemongame;
-import java.util.*;
 
-
+import com.pokemongame.Building.Center_Pokemon;
+import com.pokemongame.Pokemon.LivingStatus;
 import com.pokemongame.Pokemon.Pokemon;
 import com.pokemongame.Pokemon.Status;
-import com.pokemongame.Pokemon.LivingStatus;
+
+import java.util.*;
 
 import static com.pokemongame.TextDisplayer.printWithDelay;
 
@@ -320,7 +321,7 @@ public class Trainer {
         switch (choice) {
             case 1 -> {
                 TextDisplayer.printWithDelay("You enter the Pokémon Center.");
-                // Logic for Pokémon Center
+                new Center_Pokemon(city, previousCity, nextCity);
             }
             case 2 -> {
                 TextDisplayer.printWithDelay("You visit the Shop.");
