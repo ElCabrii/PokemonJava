@@ -375,6 +375,10 @@ public class Trainer {
 
 
     public void giveItem(Item item, int amount) {
+        }
+    }
+    public void giveItem (ItemEnum itemName, int amount){
+        Item item = new Item(itemName);
         for (int i = 0; i < bag.length; i++) {
             if (bag[i] != null && bag[i].getName().equals(item.getName())) {
                 bag[i].setAmount(bag[i].getAmount() + amount);
@@ -389,5 +393,44 @@ public class Trainer {
         }
         System.out.println("Your bag is full! You can't receive " + item.getName() + "!");
     }
+    public void move() {
+        System.out.println("Where would you like to go?");
+        System.out.println("Do you want to move in the city or teleport to another city?");
+        System.out.println("1. Move in the city");
+        System.out.println("2. Teleport to another city");
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        while (choice != 1 && choice != 2) {
+            System.out.println("Invalid choice. Please choose 1 or 2.");
+            choice = scanner.nextInt();
+        }
+        if (choice == 1) {
+            System.out.println("Where would you like to go?");
+            for (int i = 0; i < Place.values().length; i++) {
+                System.out.println(i + 1 + ". " + Place.values()[i]);
+            }
+            int placeChoice = scanner.nextInt();
+            while (placeChoice < 1 || placeChoice > Place.values().length) {
+                System.out.println("Invalid choice. Please choose a number between 1 and " + Place.values().length);
+                placeChoice = scanner.nextInt();
+            }
+            City city = currentLocation.keySet().iterator().next();
+            currentLocation = Map.of(city, Place.values()[placeChoice - 1]);
+            System.out.println("You are now in " + Place.values()[placeChoice - 1] + "!");
+        } else {
+            System.out.println("Where would you like to go?");
+            for (int i = 0; i < City.values().length; i++) {
+                System.out.println(i + 1 + ". " + City.values()[i]);
+            }
+            int cityChoice = scanner.nextInt();
+            while (cityChoice < 1 || cityChoice > City.values().length) {
+                System.out.println("Invalid choice. Please choose a number between 1 and " + City.values().length);
+                cityChoice = scanner.nextInt();
+            }
+            currentLocation = Map.of(City.values()[cityChoice - 1], Place.NURSERY);
+            System.out.println("You are now in " + City.values()[cityChoice - 1] + "!");
+        }
+    }
+}
 
 }
