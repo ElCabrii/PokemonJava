@@ -1,13 +1,13 @@
-package test;
+package test.pokemongame;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import test.Chapters.Intro;
-import test.Pokemon.Ability;
-import test.Pokemon.Pokemon;
-import test.Pokemon.Status;
+import test.pokemongame.Chapters.Intro;
+import test.pokemongame.Pokemon.Ability;
+import test.pokemongame.Pokemon.Pokemon;
+import test.pokemongame.Pokemon.Status;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -47,6 +47,11 @@ public class Game {
             }
         }
         return null;
+    }
+    public static Pokemon getRandomPokemon(Status status) {
+        Pokemon pokemon = pokemons.get((int) (Math.random() * pokemons.size()));
+        pokemon.setStatus(status);
+        return pokemon;
     }
     public Trainer getPlayer() {
         return trainer;

@@ -1,8 +1,7 @@
-package test.Pokemon;
+package test.pokemongame.Pokemon;
 
 public enum Status {
     WILD,
     CAUGHT,
-    TAMED,
-    NORMAL
+    TAMED
 }

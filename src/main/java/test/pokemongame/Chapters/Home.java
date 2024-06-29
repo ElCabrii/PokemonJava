@@ -1,7 +1,7 @@
-package com.pokemongame.Chapters;
+package test.pokemongame.Chapters;
 
-import com.pokemongame.*;
-import com.pokemongame.Pokemon.Status;
+import test.pokemongame.*;
+import test.pokemongame.Pokemon.Status;
 
 import java.util.Map;
 

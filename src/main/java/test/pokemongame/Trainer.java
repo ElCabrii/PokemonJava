@@ -1,10 +1,10 @@
-package com.pokemongame;
+package test.pokemongame;
+
+import test.pokemongame.Pokemon.LivingStatus;
+import test.pokemongame.Pokemon.Pokemon;
+import test.pokemongame.Pokemon.Status;
+
 import java.util.*;
-
-
-import com.pokemongame.Pokemon.Pokemon;
-import com.pokemongame.Pokemon.Status;
-import com.pokemongame.Pokemon.LivingStatus;
 
 import static com.pokemongame.TextDisplayer.printWithDelay;
 
@@ -268,19 +268,19 @@ public class Trainer {
         switch (choice) {
             case 1 -> {
                 TextDisplayer.printWithDelay("You choose the TAR path");
-                if (fightChance < fightProbability) { // 50% chance to encounter a Trainer
+               /* if (fightChance < fightProbability) { // 50% chance to encounter a Trainer
                     TextDisplayer.printWithDelay("You encounter a Trainer!");
                     Trainer randomTrainer = new Trainer("Trainer", Map.of(City.PALLET_TOWN, Place.NURSERY));
                     randomTrainer.addPokemonToTeam(Game.getRandomPokemon(Status.TAMED));
                     fight(randomTrainer);
                 } else { // 50% chance to go directly to the next village
-                    TextDisplayer.printWithDelay("You safely reach the next village without any encounters.");
+                   */ TextDisplayer.printWithDelay("You safely reach the next village without any encounters.");
                     moveToCity(targetCity, previousCity, nextCity);
                 }
-            }
+
             case 2 -> {
                 TextDisplayer.printWithDelay("You choose the FERN path");
-                if (fightChance < fightProbability) { // 50% chance to encounter a wild Pokémon
+               /* if (fightChance < fightProbability) { // 50% chance to encounter a wild Pokémon
                     TextDisplayer.printWithDelay("You encounter a wild Pokemon!");
                     Pokemon randomPokemon = Game.getRandomPokemon(Status.WILD);
                     encounterPokemon(randomPokemon);
@@ -288,10 +288,10 @@ public class Trainer {
                     Pokemon currentPokemon = team[0];
                     currentPokemon.attack(wildPokemon);
                 } else { // 50% chance to go directly to the next village
-                    TextDisplayer.printWithDelay("You safely reach the next village without any encounters.");
+                 */   TextDisplayer.printWithDelay("You safely reach the next village without any encounters.");
                     moveToCity(targetCity, previousCity, nextCity);
                 }
-            }
+
             default -> {
                 System.out.println("Invalid choice. Please choose 1 or 2.");
                 choosePath(targetCity, previousCity, nextCity);

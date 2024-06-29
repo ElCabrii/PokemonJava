@@ -1,6 +1,6 @@
-package test;
+package test.pokemongame;
 
-public enum Places {
+public enum Place {
     ARENA,
     NURSERY,
     SHOP,

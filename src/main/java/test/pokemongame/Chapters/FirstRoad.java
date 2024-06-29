@@ -1,8 +1,8 @@
-package com.pokemongame.Chapters;
+package test.pokemongame.Chapters;
 
-import com.pokemongame.City;
-import com.pokemongame.TextDisplayer;
-import com.pokemongame.Trainer;
+import test.pokemongame.City;
+import test.pokemongame.TextDisplayer;
+import test.pokemongame.Trainer;
 
 
 public class FirstRoad {
@@ -12,7 +12,7 @@ public class FirstRoad {
 
                     };
         TextDisplayer.printWithDelay(textToDisplay[0]);
-        player.choosePath(City.VIRIDIAN_CITY, City.PALLET_TOWN,City.PEWTER_CITY);
+        player.choosePath(City.VIRIDIAN_CITY, City.PALLET_TOWN, City.PEWTER_CITY);
         return player;
     }
 }

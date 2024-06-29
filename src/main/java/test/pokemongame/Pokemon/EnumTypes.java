@@ -1,4 +1,4 @@
-package test.Pokemon;
+package test.pokemongame.Pokemon;
 
 public enum EnumTypes{
     NORMAL,
