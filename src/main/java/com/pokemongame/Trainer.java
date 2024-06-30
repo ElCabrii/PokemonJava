@@ -1,9 +1,11 @@
 package com.pokemongame;
 
+import com.pokemongame.Building.Arena;
 import com.pokemongame.Building.Center_Pokemon;
 import com.pokemongame.Pokemon.LivingStatus;
 import com.pokemongame.Pokemon.Pokemon;
 import com.pokemongame.Pokemon.Status;
+
 
 import java.util.*;
 
@@ -16,6 +18,7 @@ public class Trainer {
     private Item[] bag;
     private static List<City> cities= new ArrayList<>();
     private Map<City, Place> currentLocation;
+    private List<Badge> badges;
     // private Places currentLocation;
 
     public Trainer(String name, Map<City, Place> currentLocation) {
@@ -160,6 +163,11 @@ public class Trainer {
         }
     }
 
+    public void addBadge(Badge badge) {
+        badges.add(badge);
+        System.out.println(name + " received the " + badge.getName() + "!");
+    }
+
     private boolean isFightOver(Trainer opponent) {
         boolean alliedAlive = false;
         boolean opponentAlive = false;
@@ -182,7 +190,7 @@ public class Trainer {
         return !alliedAlive || !opponentAlive;
     }
 
-    public void fight(Trainer opponent) {
+    public boolean fight(Trainer opponent) {
         printWithDelay("You are fighting " + opponent.getName() + "!");
         Pokemon currentPokemon = team[0];
         printWithDelay("Current Pokemon: " + currentPokemon.getName());
@@ -231,7 +239,7 @@ public class Trainer {
                                     break;
                                 } else {
                                     printWithDelay("You win!");
-                                    return;
+                                    return false;
                                 }
                             }
                         }
@@ -245,9 +253,10 @@ public class Trainer {
                 printWithDelay("You win!");
                 break;
             }
-            return;
+            return false;
         }
         printWithDelay("You lose!");
+        return false;
     }
 
 
@@ -329,7 +338,7 @@ public class Trainer {
             }
             case 3 -> {
                 TextDisplayer.printWithDelay("You challenge the Arena.");
-                // Logic for Arena
+                new Arena(this);
             }
             case 4 -> {
                 if (nextCity != null) {
@@ -375,8 +384,6 @@ public class Trainer {
     }
 
 
-    public void giveItem(Item item, int amount) {
-        }
 
     public void giveItem (ItemEnum itemName, int amount){
         Item item = new Item(itemName);
