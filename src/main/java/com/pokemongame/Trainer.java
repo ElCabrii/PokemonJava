@@ -13,7 +13,7 @@ public class Trainer {
     private Pokemon[] team;
     private List<Pokemon> caughtPokemon;
     private Item[] bag;
-    private static List<City> cities= new ArrayList<>();
+    private static List<City> cities = new ArrayList<>();
     private Map<City, Place> currentLocation;
     // private Places currentLocation;
 
@@ -86,14 +86,9 @@ public class Trainer {
             case "3" -> {
                 return Game.getPokemon("Squirtle", Status.CAUGHT);
             }
-            default -> {
-                System.out.println("Invalid choice. Please try again");
-                getStarterPokemon();
-            }
         }
-
-        System.out.println("You have chosen " + team[0].getName() + " as your first Pokemon!");
-        return team[0];
+        System.out.println("Invalid choice. Please try again");
+        return getStarterPokemon();
     }
 
     public Pokemon choosePokemon() {
@@ -113,7 +108,7 @@ public class Trainer {
             System.out.println("Choose a Pokemon!");
             for (int i = 0; i < team.length; i++) {
                 if (team[i] != null) {
-                    System.out.println(i + ". " + team[i].getName());
+                    System.out.println(i+1 + ". " + team[i].getName());
                 }
             }
             Scanner scanner = new Scanner(System.in);
@@ -129,33 +124,51 @@ public class Trainer {
     }
 
     public void encounterPokemon(Pokemon wildPokemon) {
-        System.out.println("What would you like to do?");
-        System.out.println("1. Fight");
-        System.out.println("2. Catch");
-        System.out.println("3. Run");
-        Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
-        switch (choice) {
-            case 1 -> {
-                Pokemon currentPokemon = choosePokemon();
-                if (currentPokemon != null) {
-                    currentPokemon.attack(wildPokemon);
+        while (wildPokemon.getCurrentHP() > 0 && !isTeamDead()) {
+            System.out.println("What would you like to do?");
+            System.out.println("1. Fight");
+            System.out.println("2. Catch");
+            System.out.println("3. Run");
+            Scanner scanner = new Scanner(System.in);
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1 -> {
+                    Pokemon currentPokemon = null;
+                    for (Pokemon pokemon : team) {
+                        if (pokemon != null) {
+                            if (pokemon.getLivingStatus() == LivingStatus.ALIVE) {
+                                currentPokemon = pokemon;
+                                System.out.println("Go, go go " + currentPokemon.getName() + "!");
+                                currentPokemon.attack(wildPokemon);
+                                break;
+                            }
+                        }
+                    }
+                }
+                case 2 -> {
+                    if (wildPokemon.getCurrentHP() < wildPokemon.getMaxHP() / 2) {
+                        System.out.println("You throw a pokeball at " + wildPokemon.getName() + "!");
+                    } else {
+                        System.out.println("You throw a pokemon at " + wildPokemon.getName() + "!");
+                        System.out.println(wildPokemon.getName() + " escaped! You need to weaken it first.");
+                        encounterPokemon(wildPokemon);
+                    }
+
+                }
+                case 3 -> {
+                    System.out.println("You ran away!");
+                    return;
                 }
             }
-            case 2 -> {
-                if (wildPokemon.getCurrentHP() < wildPokemon.getMaxHP() / 2) {
-                    System.out.println("You throw a pokeball at " + wildPokemon.getName() + "!");
-
-                    System.out.println("You caught " + wildPokemon.getName() + "!");
-                    caughtPokemon.add(wildPokemon);
-                } else {
-                    System.out.println("You throw a pokemon at " + wildPokemon.getName() + "!");
-                    System.out.println(wildPokemon.getName() + " escaped! You need to weaken it first.");
-                    encounterPokemon(wildPokemon);
-                }
-
-            }
-            case 3 -> System.out.println("You ran away!");
+        }
+        if (wildPokemon.getStatus() == Status.CAUGHT) {
+            System.out.println("You caught " + wildPokemon.getName() + "!");
+            caughtPokemon.add(wildPokemon);
+        } else if (isTeamDead()) {
+            System.out.println("All of your Pokemon have fainted!");
+            System.out.println(wildPokemon.getName() + " got away!");
+        } else {
+            System.out.println("You defeated " + wildPokemon.getName() + "!");
         }
     }
 
@@ -203,7 +216,7 @@ public class Trainer {
                         printWithDelay("Go, go go " + currentPokemon.getName() + "!");
                     }
                     case 3 -> {
-                        if (bag.length == 0) {
+                        if (bag[0] == null ) {
                             printWithDelay("You have no items in your bag!");
                         } else {
                             printWithDelay("What item would you like to use?");
@@ -284,9 +297,6 @@ public class Trainer {
                     TextDisplayer.printWithDelay("You encounter a wild Pokemon!");
                     Pokemon randomPokemon = Game.getRandomPokemon(Status.WILD);
                     encounterPokemon(randomPokemon);
-                    Pokemon wildPokemon = Game.getPokemon(randomPokemon.randomPokemonName(), Status.WILD);
-                    Pokemon currentPokemon = team[0];
-                    currentPokemon.attack(wildPokemon);
                 } else { // 50% chance to go directly to the next village
                     TextDisplayer.printWithDelay("You safely reach the next village without any encounters.");
                     moveToCity(targetCity, previousCity, nextCity);
@@ -373,10 +383,6 @@ public class Trainer {
         }
     }
 
-
-    public void giveItem(Item item, int amount) {
-        }
-
     public void giveItem (ItemEnum itemName, int amount){
         Item item = new Item(itemName);
         for (int i = 0; i < bag.length; i++) {
@@ -431,5 +437,14 @@ public class Trainer {
             System.out.println("You are now in " + City.values()[cityChoice - 1] + "!");
         }
     }
+    public boolean isTeamDead(){
+        for (Pokemon pokemon : team) {
+            if (pokemon != null) {
+                if (pokemon.getLivingStatus() == LivingStatus.ALIVE) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
-

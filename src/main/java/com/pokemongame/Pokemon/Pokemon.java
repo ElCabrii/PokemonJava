@@ -111,6 +111,7 @@ public class Pokemon {
                         System.out.println(name + " took " + dmg + " damage!");
                         System.out.println(name + " has " + currentHP + " HP left!");
                     } else {
+                        System.out.println(name + " took " + dmg + " damage!");
                         currentHP = 0;
                         faint();
                     }
