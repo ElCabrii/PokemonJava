@@ -11,4 +11,21 @@ public enum City {
     FUCHSIA_CITY,
     SAFFRON_CITY,
     CINNABAR_ISLAND,
+    ;
+
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void enterCity(City previousCity, City city, City nextCity) {
+    }
+
+    public void enterCity(City city) {
+    }
 }

@@ -38,6 +38,17 @@ public class Center_Pokemon {
     }
 
     private void enterCity(City city, City previousCity, City nextCity) {
-        // Add your city entering logic here
+        TextDisplayer.printWithDelay("Where would you like to go?");
+        TextDisplayer.printWithDelay("1. " + previousCity.getName());
+        TextDisplayer.printWithDelay("2. " + nextCity.getName());
+
+        int choice = scan.nextInt();
+        if (choice == 1) {
+            city.enterCity(previousCity, city, nextCity);
+        }
+        else {
+            city.enterCity(nextCity, previousCity, city);
+
+        }
     }
 }

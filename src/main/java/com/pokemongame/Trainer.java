@@ -2,6 +2,9 @@ package com.pokemongame;
 import java.util.*;
 
 
+import com.pokemongame.Building.Arena;
+import com.pokemongame.Building.Center_Pokemon;
+import com.pokemongame.Building.Shop;
 import com.pokemongame.Pokemon.Pokemon;
 import com.pokemongame.Pokemon.Status;
 import com.pokemongame.Pokemon.LivingStatus;
@@ -16,6 +19,7 @@ public class Trainer {
     private static List<City> cities= new ArrayList<>();
     private Map<City, Place> currentLocation;
     private List<Badge> badges;
+    private City currentCity;
     // private Places currentLocation;
 
     public Trainer(String name, Map<City, Place> currentLocation) {
@@ -161,7 +165,7 @@ public class Trainer {
                     return;
                 }
             }
-            case 3 -> System.out.println("You ran away!");
+
         }
         if (wildPokemon.getStatus() == Status.CAUGHT) {
             System.out.println("You caught " + wildPokemon.getName() + "!");
@@ -288,25 +292,25 @@ public class Trainer {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1 -> {
-                TextDisplayer.printWithDelay("You choose the TAR path");
+                printWithDelay("You choose the TAR path");
                 if (fightChance < fightProbability) { // 50% chance to encounter a Trainer
-                    TextDisplayer.printWithDelay("You encounter a Trainer!");
+                    printWithDelay("You encounter a Trainer!");
                     Trainer randomTrainer = new Trainer("Trainer", Map.of(City.PALLET_TOWN, Place.NURSERY));
                     randomTrainer.addPokemonToTeam(Game.getRandomPokemon(Status.TAMED));
                     fight(randomTrainer);
                 } else { // 50% chance to go directly to the next village
-                    TextDisplayer.printWithDelay("You safely reach the next village without any encounters.");
+                    printWithDelay("You safely reach the next village without any encounters.");
                     moveToCity(targetCity, previousCity, nextCity);
                 }
             }
             case 2 -> {
-                TextDisplayer.printWithDelay("You choose the FERN path");
+                printWithDelay("You choose the FERN path");
                 if (fightChance < fightProbability) { // 50% chance to encounter a wild Pokémon
-                    TextDisplayer.printWithDelay("You encounter a wild Pokemon!");
+                    printWithDelay("You encounter a wild Pokemon!");
                     Pokemon randomPokemon = Game.getRandomPokemon(Status.WILD);
                     encounterPokemon(randomPokemon);
                 } else { // 50% chance to go directly to the next village
-                    TextDisplayer.printWithDelay("You safely reach the next village without any encounters.");
+                    printWithDelay("You safely reach the next village without any encounters.");
                     moveToCity(targetCity, previousCity, nextCity);
                 }
             }
@@ -318,12 +322,12 @@ public class Trainer {
     }
 
     private void moveToCity(City city, City previousCity, City nextCity) {
-        TextDisplayer.printWithDelay("You have reached " + city.name() + ".");
+        printWithDelay("You have reached " + city.name() + ".");
         currentLocation = Map.of(city, Place.NURSERY); // Update current location
         enterCity(city, previousCity, nextCity);
     }
 
-    private void enterCity(City city, City previousCity, City nextCity) {
+    public void enterCity(City city, City previousCity, City nextCity) {
         System.out.println(
                 """
                         You have the following options in %s :\s
@@ -337,32 +341,32 @@ public class Trainer {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1 -> {
-                TextDisplayer.printWithDelay("You enter the Pokémon Center.");
-                // Logic for Pokémon Center
+                printWithDelay("You enter the Pokémon Center.");
+                new Center_Pokemon(city, previousCity, nextCity);
             }
             case 2 -> {
-                TextDisplayer.printWithDelay("You visit the Shop.");
-                // Logic for Shop
+                printWithDelay("You visit the Shop.");
+                new Shop(this).buyItem();
             }
             case 3 -> {
-                TextDisplayer.printWithDelay("You challenge the Arena.");
-                // Logic for Arena
+                printWithDelay("You challenge the Arena.");
+                new Arena(this);
             }
             case 4 -> {
                 if (nextCity != null) {
-                    TextDisplayer.printWithDelay("You head to the next city.");
+                    printWithDelay("You head to the next city.");
                     choosePath(nextCity, city, getNextCity(nextCity));
                 } else {
-                    TextDisplayer.printWithDelay("There is no next city.");
+                    printWithDelay("There is no next city.");
                     enterCity(city, previousCity, nextCity);
                 }
             }
             case 5 -> {
                 if (previousCity != null) {
-                    TextDisplayer.printWithDelay("You return to the previous city.");
+                    printWithDelay("You return to the previous city.");
                     choosePath(previousCity, getPreviousCity(previousCity), city);
                 } else {
-                    TextDisplayer.printWithDelay("There is no previous city.");
+                    printWithDelay("There is no previous city.");
                     enterCity(city, previousCity, nextCity);
                 }
             }
@@ -373,7 +377,7 @@ public class Trainer {
         }
     }
 
-    private City getNextCity(City currentCity) {
+    public City getNextCity(City currentCity) {
         int currentIndex = cities.indexOf(currentCity);
         if (currentIndex >= 0 && currentIndex < cities.size() - 1) {
             return cities.get(currentIndex + 1);
@@ -382,7 +386,7 @@ public class Trainer {
         }
     }
 
-    private City getPreviousCity(City currentCity) {
+    public City getPreviousCity(City currentCity) {
         int currentIndex = cities.indexOf(currentCity);
         if (currentIndex > 0 && currentIndex < cities.size()) {
             return cities.get(currentIndex - 1);
@@ -408,6 +412,15 @@ public class Trainer {
             }
         }
         System.out.println("Your bag is full! You can't receive " + item.getName() + "!");
+    }
+
+    public void showBagContents() {
+        System.out.println("Your bag contains:");
+        for (Item item : bag) {
+            if (item != null) {
+                System.out.println(item.getName() + ": " + item.getAmount());
+            }
+        }
     }
     public void move() {
         System.out.println("Where would you like to go?");
@@ -456,6 +469,24 @@ public class Trainer {
             }
         }
         return true;
+    }
+    public void addItem(ItemEnum item) {
+        for (int i = 0; i < bag.length; i++) {
+            if (bag[i] == null) {
+                bag[i] = new Item(item);
+                System.out.println("You received a " + item + "!");
+                return;
+            }
+        }
+        System.out.println("Your bag is full! You can't receive a " + item + "!");
+    }
+
+    public City getCurrentCity() {
+        return currentCity;
+    }
+
+    public void setCurrentCity(City currentCity) {
+        this.currentCity = currentCity;
     }
 }
 
