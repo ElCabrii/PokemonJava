@@ -13,8 +13,9 @@ public class Trainer {
     private Pokemon[] team;
     private List<Pokemon> caughtPokemon;
     private Item[] bag;
-    private static List<City> cities = new ArrayList<>();
+    private static List<City> cities= new ArrayList<>();
     private Map<City, Place> currentLocation;
+    private List<Badge> badges;
     // private Places currentLocation;
 
     public Trainer(String name, Map<City, Place> currentLocation) {
@@ -160,6 +161,7 @@ public class Trainer {
                     return;
                 }
             }
+            case 3 -> System.out.println("You ran away!");
         }
         if (wildPokemon.getStatus() == Status.CAUGHT) {
             System.out.println("You caught " + wildPokemon.getName() + "!");
@@ -170,6 +172,11 @@ public class Trainer {
         } else {
             System.out.println("You defeated " + wildPokemon.getName() + "!");
         }
+    }
+
+    public void addBadge(Badge badge) {
+        badges.add(badge);
+        System.out.println(name + " received the " + badge.getName() + "!");
     }
 
     private boolean isFightOver(Trainer opponent) {
@@ -194,7 +201,7 @@ public class Trainer {
         return !alliedAlive || !opponentAlive;
     }
 
-    public void fight(Trainer opponent) {
+    public boolean fight(Trainer opponent) {
         printWithDelay("You are fighting " + opponent.getName() + "!");
         Pokemon currentPokemon = team[0];
         printWithDelay("Current Pokemon: " + currentPokemon.getName());
@@ -243,7 +250,7 @@ public class Trainer {
                                     break;
                                 } else {
                                     printWithDelay("You win!");
-                                    return;
+                                    return false;
                                 }
                             }
                         }
@@ -257,9 +264,10 @@ public class Trainer {
                 printWithDelay("You win!");
                 break;
             }
-            return;
+            return false;
         }
         printWithDelay("You lose!");
+        return false;
     }
 
 
@@ -383,6 +391,8 @@ public class Trainer {
         }
     }
 
+
+
     public void giveItem (ItemEnum itemName, int amount){
         Item item = new Item(itemName);
         for (int i = 0; i < bag.length; i++) {
@@ -448,3 +458,4 @@ public class Trainer {
         return true;
     }
 }
+
